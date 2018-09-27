@@ -27,16 +27,6 @@ TEST(TBitField, new_bitfield_is_set_to_zero)
   EXPECT_EQ(0, sum);
 }
 
-TEST(TBitField, can_set_bit)
-{
-  TBitField bf(10);
-
-  EXPECT_EQ(0, bf.GetBit(3));
-
-  bf.SetBit(3);
-  EXPECT_NE(0, bf.GetBit(3));
-}
-
 TEST(TBitField, can_clear_bit)
 {
   TBitField bf(10);
@@ -81,13 +71,6 @@ TEST(TBitField, throws_when_get_bit_with_too_large_index)
   TBitField bf(10);
 
   ASSERT_ANY_THROW(bf.GetBit(11));
-}
-
-TEST(TBitField, throws_when_clear_bit_with_negative_index)
-{
-  TBitField bf(10);
-
-  ASSERT_ANY_THROW(bf.ClrBit(-3));
 }
 
 TEST(TBitField, throws_when_clear_bit_with_too_large_index)
@@ -210,14 +193,14 @@ TEST(TBitField, and_operator_applied_to_bitfields_of_non_equal_size)
 {
   const int size1 = 4, size2 = 5;
   TBitField bf1(size1), bf2(size2), expBf(size2);
-  // bf1 = 0011
+  //bf1 = 0011
   bf1.SetBit(2);
   bf1.SetBit(3);
-  // bf2 = 01010
+   //bf2 = 01010
   bf2.SetBit(1);
   bf2.SetBit(3);
 
-  // expBf = 00010
+  //expBf = 00010
   expBf.SetBit(3);
 
   EXPECT_EQ(expBf, bf1 & bf2);
